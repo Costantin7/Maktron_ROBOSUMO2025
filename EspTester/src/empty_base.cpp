@@ -41,16 +41,6 @@ pinMode(MOTOR_B2,OUTPUT);
 }
 
 void loop() {
-if(digitalRead(COR_ESQUERDA) == HIGH){
-  Serial.println("Cor Esquerda: 1");
-}
-if(digitalRead(COR_DIREITA) == HIGH){
-  Serial.println("Cor Esquerda: 1");
-}
-
-if(digitalRead(COR_ATRAS) == HIGH){
-  Serial.println("Cor Atras: 1");
-}
 
 
 }
