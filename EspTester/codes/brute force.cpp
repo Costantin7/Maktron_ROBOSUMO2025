@@ -67,4 +67,5 @@ if(digitalRead(OBS_LADO_DIREITA) == HIGH){
   Serial.println("Obstaculo Lado Direita: 1");
 }
 delay(2000);
+
 }

@@ -25,13 +25,13 @@
 // Functions to control motors
 
 void MotorActivate(char motor, int direction, int speed, int time){
-
   // motor: 'A' or 'B'
   // direction: 0 = stop, 1 = forward, 2 = backward;
-  //speed: 0-255 PWM value
+  // speed: 0-255 PWM value
 
   if(motor == 'A'){
     if(direction == 1){
+      Serial.println("Motor A Frente");
       analogWrite(MOTOR_A1, speed);
       digitalWrite(MOTOR_A2, LOW);
       delay(time);
@@ -39,6 +39,7 @@ void MotorActivate(char motor, int direction, int speed, int time){
       digitalWrite(MOTOR_A2, LOW);
     }
     if(direction == 2){
+      Serial.println("Motor A Tras");
       analogWrite(MOTOR_A2, speed);
       digitalWrite(MOTOR_A1, LOW);
       delay(time);
@@ -52,6 +53,7 @@ void MotorActivate(char motor, int direction, int speed, int time){
   }
   if(motor == 'B'){
     if(direction == 1){
+      Serial.println("Motor B Frente");
       analogWrite(MOTOR_B1, speed);
       digitalWrite(MOTOR_B2, LOW);
       delay(time);
@@ -59,6 +61,7 @@ void MotorActivate(char motor, int direction, int speed, int time){
       digitalWrite(MOTOR_B2, LOW);
     }
     if(direction == 2){
+      Serial.println("Motor B Tras");
       digitalWrite(MOTOR_B2, HIGH);
       digitalWrite(MOTOR_B1, LOW);
       delay(time);
@@ -73,7 +76,6 @@ void MotorActivate(char motor, int direction, int speed, int time){
 
 
 }
-
 
 
 void setup() {
@@ -97,6 +99,25 @@ pinMode(MOTOR_B2,OUTPUT);
 }
 
 void loop() {
-
- Serial.println("Testando motor A Frente");
+delay(500);
+MotorActivate('A',1,255,1000);
+delay(500);
+MotorActivate('A',2,255,1000);
+delay(500);
+MotorActivate('B',1,255,1000); 
+delay(500);
+MotorActivate('B',2,255,1000);
+delay(500);
+MotorActivate('A',1,50,1000);
+delay(500);
+MotorActivate('A',2,50,1000);
+delay(500);
+MotorActivate('B',1,50,1000); 
+delay(500);
+MotorActivate('B',2,50,1000);
+delay(5000);
+digitalWrite(BUZZER,HIGH);
+delay(1000);
+digitalWrite(BUZZER,LOW);
+delay(1000);
 }

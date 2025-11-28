@@ -18,7 +18,65 @@
 #define MOTOR_A2 19
 
 #define MOTOR_B1 18
-#define MOTOR_B2 5
+#define MOTOR_B2 5 
+// não usar pwm no pino 5
+
+
+// Functions to control motors
+
+void MotorActivate(char motor, int direction, int speed, int time){
+  // motor: 'A' or 'B'
+  // direction: 0 = stop, 1 = forward, 2 = backward;
+  // speed: 0-255 PWM value
+
+  if(motor == 'A'){
+    if(direction == 1){
+      Serial.println("Motor A Frente");
+      analogWrite(MOTOR_A1, speed);
+      digitalWrite(MOTOR_A2, LOW);
+      delay(time);
+      digitalWrite(MOTOR_A1, LOW);
+      digitalWrite(MOTOR_A2, LOW);
+    }
+    if(direction == 2){
+      Serial.println("Motor A Tras");
+      analogWrite(MOTOR_A2, speed);
+      digitalWrite(MOTOR_A1, LOW);
+      delay(time);
+      digitalWrite(MOTOR_A1, LOW);
+      digitalWrite(MOTOR_A2, LOW);
+    }
+    if(direction == 0){
+      digitalWrite(MOTOR_A1, LOW);
+      digitalWrite(MOTOR_A2, LOW);
+    }
+  }
+  if(motor == 'B'){
+    if(direction == 1){
+      Serial.println("Motor B Frente");
+      analogWrite(MOTOR_B1, speed);
+      digitalWrite(MOTOR_B2, LOW);
+      delay(time);
+      digitalWrite(MOTOR_B1, LOW);
+      digitalWrite(MOTOR_B2, LOW);
+    }
+    if(direction == 2){
+      Serial.println("Motor B Tras");
+      digitalWrite(MOTOR_B2, HIGH);
+      digitalWrite(MOTOR_B1, LOW);
+      delay(time);
+      digitalWrite(MOTOR_B1, LOW);
+      digitalWrite(MOTOR_B2, LOW);
+    }
+    if(direction == 0){
+      digitalWrite(MOTOR_B1, LOW);
+      digitalWrite(MOTOR_B2, LOW);
+    }
+  }
+
+
+}
+
 
 void setup() {
 Serial.begin(9600);
@@ -37,10 +95,10 @@ pinMode(MOTOR_A1,OUTPUT);
 pinMode(MOTOR_A2,OUTPUT);
 pinMode(MOTOR_B1,OUTPUT);
 pinMode(MOTOR_B2,OUTPUT);
+digitalWrite(BUZZER, HIGH);
 
 }
 
 void loop() {
-
 
 }
